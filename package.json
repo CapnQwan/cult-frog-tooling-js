@@ -1,6 +1,6 @@
 {
   "name": "@cult-frog/tooling",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Shared TypeScript, Biome, and build config used across Cult Frog packages — a single source of truth so every package builds, lints, and tests the same way.",
   "license": "MIT",
   "author": "Quin Partridge",
