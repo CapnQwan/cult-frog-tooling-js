@@ -1,3 +1,4 @@
+import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import { baseVitestConfig } from './base.js';
@@ -11,7 +12,7 @@ describe('baseVitestConfig', () => {
     });
 
     expect(config.resolve?.alias).toEqual({
-      '@cult-frog/example': '/repo/src/index.ts',
+      '@cult-frog/example': resolve('/repo', 'src/index.ts'),
     });
   });
 
