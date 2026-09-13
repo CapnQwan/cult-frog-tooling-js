@@ -1,6 +1,5 @@
 import { resolve } from 'node:path';
 import process from 'node:process';
-import { defineConfig } from 'vitest/config';
 
 /**
  * @typedef {object} BaseVitestOptions
@@ -16,11 +15,16 @@ import { defineConfig } from 'vitest/config';
  */
 
 /**
- * Shared Vitest config for Cult Frog Studios packages. Sets the defaults every
- * package should start from; pass `testOverrides` for anything that
- * genuinely needs to differ per package rather than editing this file.
+ * @typedef {object} BaseVitestConfig
+ * @property {Record<string, unknown>} test
+ * @property {{ alias?: Record<string, string> }} resolve
+ */
+
+/**
+ * Shared Vitest config for Cult Frog packages.
  *
  * @param {BaseVitestOptions} [options]
+ * @returns {BaseVitestConfig}
  */
 export function baseVitestConfig({
   aliasName,
@@ -28,7 +32,7 @@ export function baseVitestConfig({
   cwd = process.cwd(),
   testOverrides = {},
 } = {}) {
-  return defineConfig({
+  return {
     test: {
       environment: 'node',
       globals: true,
@@ -39,5 +43,5 @@ export function baseVitestConfig({
       ...testOverrides,
     },
     resolve: aliasName ? { alias: { [aliasName]: resolve(cwd, aliasEntry) } } : {},
-  });
+  };
 }

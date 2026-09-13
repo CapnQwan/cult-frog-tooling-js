@@ -1,12 +1,17 @@
-import type { defineConfig } from 'vitest/config';
-
 export interface BaseVitestOptions {
-  aliasName?: string;
-  aliasEntry?: string;
-  cwd?: string;
-  testOverrides?: Record<string, unknown>;
-}
-
-export declare function baseVitestConfig(
-  options?: BaseVitestOptions
-): ReturnType<typeof defineConfig>;
+    aliasName?: string;
+    aliasEntry?: string;
+    cwd?: string;
+    testOverrides?: Record<string, unknown>;
+  }
+  
+  export interface BaseVitestConfig {
+    test: Record<string, unknown>;
+    resolve: {
+      alias?: Record<string, string>;
+    };
+  }
+  
+  export declare function baseVitestConfig(
+    options?: BaseVitestOptions
+  ): BaseVitestConfig;
