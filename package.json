@@ -30,7 +30,10 @@
     "./tsconfig/base.json": "./tsconfig/base.json",
     "./tsconfig/build.json": "./tsconfig/build.json",
     "./biome/base": "./biome/base.jsonc",
-    "./vitest/base": "./vitest/base.js",
+    "./vitest/base": {
+      "types": "./vitest/base.d.ts",
+      "default": "./vitest/base.js"
+    },
     "./package.json": "./package.json"
   },
   "engines": {
