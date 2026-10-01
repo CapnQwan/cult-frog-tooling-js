@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.5.1/schema.json",
+  "$schema": "https://biomejs.dev/schemas/2.5.13/schema.json",
   "vcs": {
     "enabled": true,
     "clientKind": "git",
@@ -177,5 +177,21 @@
         }
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      // Type tests assert through declarations and sample values that are never
+      // read at runtime -- the assignability check *is* the assertion -- and they
+      // deliberately exercise `any` and exhaustive switches without a default.
+      "includes": ["**/*.test-d.ts"],
+      "linter": {
+        "rules": {
+          "correctness": { "noUnusedVariables": "off" },
+          "suspicious": { "noExplicitAny": "off" },
+          "style": { "useDefaultSwitchClause": "off" },
+          "security": { "noSecrets": "off" }
+        }
+      }
+    }
+  ]
 }

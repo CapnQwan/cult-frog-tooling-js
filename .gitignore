@@ -11,7 +11,6 @@ dist/
 build/
 out/
 coverage/
-packages/engine/docs/
 *.tsbuildinfo
 
 # =========================
@@ -62,45 +61,10 @@ Thumbs.db
 .swc/
 
 # =========================
-# Game engine / graphics artifacts
-# =========================
-# compiled shaders
-*.spv
-*.glslang
-*.wgsl.cache
-
-# GPU / shader compilation caches
-shader-cache/
-shaders/cache/
-
-# runtime-generated assets (if you stream or bake assets)
-runtime-assets/
-generated-assets/
-baked/
-
-# =========================
-# Web assets (optional depending on workflow)
-# =========================
-# If you compile assets (textures/audio/etc)
-*.atlas
-*.basis
-*.ktx2
-
-# =========================
-# Monorepo (pnpm)
-# =========================
-.pnpm-debug.log*
-
-# =========================
 # Testing
 # =========================
 jest-cache/
 vitest-cache/
-
-# =========================
-# Coverage
-# =========================
-coverage/
 
 # =========================
 # Misc tooling
@@ -111,7 +75,6 @@ coverage/
 # =========================
 # Pre commit hooks
 # =========================
-.pre-commit-config.yaml
 .pre-commit-config.yaml
 
 # =========================

@@ -24,7 +24,8 @@
   "files": [
     "tsconfig",
     "biome",
-    "vitest"
+    "vitest",
+    "!vitest/*.test.ts"
   ],
   "exports": {
     "./tsconfig/base.json": "./tsconfig/base.json",

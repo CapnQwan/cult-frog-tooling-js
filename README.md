@@ -45,7 +45,7 @@ pnpm add -D @cult-frog/tooling
 }
 ```
 
-Add package-specific rule overrides after the `extends` line if a package genuinely needs one.
+Add package-specific rule overrides after the `extends` line if a package genuinely needs one. The base already relaxes the rules that type tests (`*.test-d.ts`) break on purpose, so packages don't need their own override for those.
 
 ### Vitest
 
@@ -55,7 +55,7 @@ Add package-specific rule overrides after the `extends` line if a package genuin
 import { baseVitestConfig } from '@cult-frog/tooling/vitest/base';
 
 export default baseVitestConfig({
-  aliasName: '@cult-frog/math',
+  aliasName: '@cult-frog/your-package',
 });
 ```
 
