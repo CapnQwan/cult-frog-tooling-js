@@ -45,7 +45,7 @@ The release workflow uses this section as the GitHub Release notes, and stops be
 pnpm build && npm pack --dry-run
 ```
 
-Only the built output, the sources and the standard files (README, LICENSE, package.json) should be listed. No tests and no config.
+Only the built output, the sources, the standard files (README, LICENSE, package.json) and `CHANGELOG.md` should be listed. No tests and no config.
 
 ## 6. Bump, commit, tag and push
 
@@ -73,5 +73,6 @@ If other Cult Frog packages depend on this one, bump their dependency when they 
 
 1. The package must already exist on npm. A brand-new package's first version is published by hand with `pnpm publish`.
 2. Add `.github/workflows/release.yml`, copied from a package that already has one.
-3. On npmjs.com, open the package's **Settings → Trusted publishing** and add GitHub Actions with the user `CapnQwan`, the package's repository, and the workflow `release.yml`. Do this right before the release: npm expires a trusted-publisher configuration that isn't used within two days.
-4. Under **Publishing access**, choose **Require two-factor authentication and disallow tokens**.
+3. Add a `CHANGELOG.md` in the format above, and add `"CHANGELOG.md"` to the `files` list in `package.json` so it ships with the package.
+4. On npmjs.com, open the package's **Settings → Trusted publishing** and add GitHub Actions with the user `CapnQwan`, the package's repository, and the workflow `release.yml`. Do this right before the release: npm expires a trusted-publisher configuration that isn't used within two days.
+5. Under **Publishing access**, choose **Require two-factor authentication and disallow tokens**.
