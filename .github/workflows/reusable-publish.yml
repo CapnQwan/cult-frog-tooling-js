@@ -1,0 +1,51 @@
+name: Reusable Publish
+
+# Publishes a Cult Frog package to npm through npm trusted publishing: no npm
+# token, and provenance is attached automatically. Consumed from each package's
+# release workflow, which is the workflow npm is configured to trust, e.g.
+#   jobs:
+#     publish:
+#       uses: CapnQwan/cult-frog-tooling-js/.github/workflows/reusable-publish.yml@main
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          registry-url: https://registry.npmjs.org
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check the tag matches package.json
+        run: |
+          version=$(node -p "require('./package.json').version")
+          if [ "$GITHUB_REF_NAME" != "v$version" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match package.json version $version"
+            exit 1
+          fi
+
+      # Trusted publishing needs npm 11.5.1 or later.
+      - name: Update npm
+        run: npm install -g npm@^11.5.1
+
+      # Runs prepublishOnly first: lint, typecheck, test and build.
+      - name: Publish
+        run: npm publish
