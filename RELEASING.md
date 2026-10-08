@@ -62,7 +62,7 @@ The tag must match the version in `package.json` exactly, or the release workflo
 ## 7. Confirm the release
 
 - The Release workflow passed in the repo's Actions tab.
-- npm shows the new version with a provenance badge.
+- npm shows the new version with a provenance badge. It can take a few minutes to appear after the workflow finishes.
 - The GitHub Release exists, with the changelog section as its notes.
 
 ## 8. Update dependents
@@ -74,5 +74,5 @@ If other Cult Frog packages depend on this one, bump their dependency when they 
 1. The package must already exist on npm. A brand-new package's first version is published by hand with `pnpm publish`.
 2. Add `.github/workflows/release.yml`, copied from a package that already has one.
 3. Add a `CHANGELOG.md` in the format above, and add `"CHANGELOG.md"` to the `files` list in `package.json` so it ships with the package.
-4. On npmjs.com, open the package's **Settings → Trusted publishing** and add GitHub Actions with the user `CapnQwan`, the package's repository, and the workflow `release.yml`. Do this right before the release: npm expires a trusted-publisher configuration that isn't used within two days.
-5. Under **Publishing access**, choose **Require two-factor authentication and disallow tokens**.
+4. On npmjs.com, open the package's **Settings → Trusted publishing** and add GitHub Actions with the user `CapnQwan`, the package's repository, and the workflow `release.yml`, and allow it to publish. npm warns against allowing this, but without it CI publishing fails with a 404. Do this right before the release: npm expires a trusted-publisher configuration that isn't used within two days.
+5. After the first CI release succeeds, go to **Publishing access** and choose **Require two-factor authentication and disallow tokens**.
