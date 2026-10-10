@@ -6,6 +6,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-10-11
+
 ### Added
 
 - `reusable-publish.yml` workflow. A package's `release.yml` calls it when a `vX.Y.Z` tag is pushed. It checks that the tag matches `package.json` and has a changelog entry, publishes to npm through trusted publishing with provenance, and creates the GitHub Release from the changelog. See [RELEASING.md](RELEASING.md).
