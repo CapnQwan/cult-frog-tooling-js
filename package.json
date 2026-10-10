@@ -25,7 +25,8 @@
     "tsconfig",
     "biome",
     "vitest",
-    "!vitest/*.test.ts"
+    "!vitest/*.test.ts",
+    "CHANGELOG.md"
   ],
   "exports": {
     "./tsconfig/base.json": "./tsconfig/base.json",
