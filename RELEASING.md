@@ -76,3 +76,18 @@ If other Cult Frog packages depend on this one, bump their dependency when they 
 3. Add a `CHANGELOG.md` in the format above, and add `"CHANGELOG.md"` to the `files` list in `package.json` so it ships with the package.
 4. On npmjs.com, open the package's **Settings → Trusted publishing** and add GitHub Actions with the user `CapnQwan`, the package's repository, and the workflow `release.yml`, and allow it to publish. npm warns against allowing this, but without it CI publishing fails with a 404. Do this right before the release: npm expires a trusted-publisher configuration that isn't used within two days.
 5. After the first CI release succeeds, go to **Publishing access** and choose **Require two-factor authentication and disallow tokens**.
+
+## Updating the shared workflows
+
+Packages call `reusable-ci.yml` and `reusable-publish.yml` at the `workflows-v0` tag in this repo, so changes to them don't reach any package until the tag moves. Tooling's own CI calls them by local path, so a broken change fails here first.
+
+After a tooling release that changes either workflow, move the tag to the release:
+
+```sh
+git tag -f workflows-v0 v<x.y.z>
+git push -f origin workflows-v0
+```
+
+Every package picks up the change on its next CI run or release. The tag doesn't start with `v`, so moving it doesn't trigger the release workflow.
+
+Keep changes under `workflows-v0` backwards compatible: adding an optional input is fine, but removing or renaming an input or a required package script breaks every package at once. For a breaking change, create `workflows-v1` and move packages over one at a time.

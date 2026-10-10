@@ -10,6 +10,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 - `reusable-publish.yml` workflow. A package's `release.yml` calls it when a `vX.Y.Z` tag is pushed. It checks that the tag matches `package.json` and has a changelog entry, publishes to npm through trusted publishing with provenance, and creates the GitHub Release from the changelog. See [RELEASING.md](RELEASING.md).
 - `CHANGELOG.md` is now included in the published package.
+- A `workflows-v0` tag for packages to call the shared workflows at, in place of `@main`. It moves to each tooling release, so changes on `main` can't reach a package's CI or releases before they're released. See [RELEASING.md](RELEASING.md#updating-the-shared-workflows).
 
 ## [0.1.2] - 2026-10-01
 

@@ -104,5 +104,7 @@ concurrency:
 
 jobs:
   check:
-    uses: CapnQwan/cult-frog-tooling-js/.github/workflows/reusable-ci.yml@main
+    uses: CapnQwan/cult-frog-tooling-js/.github/workflows/reusable-ci.yml@workflows-v0
 ```
+
+Call the shared workflows at the `workflows-v0` tag, not `@main`. The tag points at the latest tooling release, so a change pushed to `main` can't reach any package's CI or releases until a release moves the tag. See [Updating the shared workflows](RELEASING.md#updating-the-shared-workflows).

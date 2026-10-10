@@ -3,7 +3,7 @@ name: Reusable CI
 # Shared CI pipeline for Cult Frog packages. Consumed via `workflow_call`, e.g.
 #   jobs:
 #     check:
-#       uses: CapnQwan/cult-frog-tooling-js/.github/workflows/reusable-ci.yml@main
+#       uses: CapnQwan/cult-frog-tooling-js/.github/workflows/reusable-ci.yml@workflows-v0
 
 on:
   workflow_call:

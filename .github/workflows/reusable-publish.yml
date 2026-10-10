@@ -5,7 +5,7 @@ name: Reusable Publish
 # release workflow, which is the workflow npm is configured to trust, e.g.
 #   jobs:
 #     publish:
-#       uses: CapnQwan/cult-frog-tooling-js/.github/workflows/reusable-publish.yml@main
+#       uses: CapnQwan/cult-frog-tooling-js/.github/workflows/reusable-publish.yml@workflows-v0
 
 on:
   workflow_call:

@@ -1,0 +1,21 @@
+name: CI
+
+permissions:
+  contents: read
+
+on:
+  push: { branches: [main] }
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    # Called by local path, so CI runs this commit's version of the shared workflow and
+    # catches a broken change to it before any package does.
+    uses: ./.github/workflows/reusable-ci.yml
+    with:
+      # Tooling ships raw config files, so there is nothing to build.
+      run-build: false

@@ -1,0 +1,14 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+  id-token: write
+
+jobs:
+  publish:
+    # Called by local path, so a release publishes with the workflow from its own tag.
+    uses: ./.github/workflows/reusable-publish.yml
